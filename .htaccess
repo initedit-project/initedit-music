@@ -1,0 +1,88 @@
+Options -Indexes
+
+php_value upload_max_filesize 40M
+php_value post_max_size 40M
+php_value max_input_time 300
+
+#DirectoryIndex /public/index.php
+
+RewriteEngine On
+
+
+
+
+RewriteBase /
+
+RewriteRule ^$ /home [L,R=301]
+
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R,L]
+
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteRule ^admin/ajax/(.+)$ /app/admin/index.php?url=$1 [L,QSA]
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^admin/(.+)$ /public/indexadmin.php?url=$1 [L,QSA]
+#RewriteRule ^/?admin/(.*)$ /app/admin/index.php?url=$1&%{QUERY_STRING} [L,NC]
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^api/(.*)$ /app/api/index.php?url=$1 [L,QSA]
+
+
+
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteRule ^ajax(.+)$ /app/website/index.php?url=$1 [L,QSA]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)$ /public/index.php?url=$1 [QSA,L]
+#RewriteRule . /public/index.php?url=$1 [QSA,L]
+
+#gzip compression
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/x-javascript
+</IfModule>
+
+#cache purpose
+<FilesMatch "\.(flv|ico|pdf|avi|mov|ppt|doc|mp3|wmv|wav|jpg|jpeg|png|gif|svg)$">
+ExpiresDefault A604800
+Header append Cache-Control "public"
+</FilesMatch>
+
+
+# BEGIN Expires
+<ifModule mod_expires.c>
+ExpiresActive On
+ExpiresDefault "access plus 1 seconds"
+ExpiresByType text/html "access plus 1 seconds"
+ExpiresByType image/gif "access plus 2592000 seconds"
+ExpiresByType image/svg "access plus 2592000 seconds"
+ExpiresByType image/jpeg "access plus 2592000 seconds"
+ExpiresByType image/png "access plus 2592000 seconds"
+ExpiresByType text/css "access plus 604800 seconds"
+ExpiresByType text/javascript "access plus 216000 seconds"
+ExpiresByType application/x-javascript "access plus 216000 seconds"
+</ifModule>
+# END Expires
+
+
+
+
+
+
+
+
+
+
+

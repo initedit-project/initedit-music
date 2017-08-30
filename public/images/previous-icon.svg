@@ -1,0 +1,27 @@
+<svg width="520" height="400" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+
+ <g>
+  <title>background</title>
+  <rect fill="#fff" id="canvas_background" height="402" width="522" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g stroke="null" id="svg_34">
+   <g stroke="null" transform="matrix(0.8873698970740871,0,0,0.9895455230094821,-7297.733492588698,-6282.955064228951) " id="svg_31">
+    <title stroke="null" transform="translate(8227.74609375,0) translate(0,6352.1123046875) ">background</title>
+    <rect stroke="null" x="8226.746094" y="6351.112305" width="582" height="402" id="svg_29" fill="none"/>
+    <g stroke="null" id="svg_28" display="none">
+     <rect stroke="null" id="svg_32" width="520" height="400" x="8227.746094" y="6352.112305" stroke-width="0" fill="url(#gridpattern)"/>
+    </g>
+   </g>
+   <g stroke="null" transform="matrix(0.8873698970740871,0,0,0.9895455230094821,-7297.733492588698,-6282.955064228951) " id="svg_33">
+    <title stroke="null" transform="translate(8227.74609375,0) translate(0,6352.1123046875) ">Layer 1</title>
+    <g stroke="null" id="svg_25">
+     <polygon stroke="null" points="8521.6845703125,6552.1123046875 8680.362274169922,6440.52685546875 8680.362274169922,6550.0849609375 8680.362274169922,6663.69775390625 " fill="#050505" id="svg_27"/>
+     <polygon stroke="null" points="8357.129913330078,6552.1123046875 8515.8076171875,6440.4501953125 8515.8076171875,6552.1123046875 8515.8076171875,6663.7744140625 " fill="#050505" id="svg_26"/>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="24">
+ <g>
+  <title>background</title>
+  <rect fill="#fff" id="canvas_background" height="34" width="150" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <text font-weight="normal" xml:space="preserve" text-anchor="start" font-family="serif, sans-serif" font-size="18" id="svg_1" y="18" x="3.5" stroke-width="0" stroke="#000" fill="#000000">Initedit</text>
+  <text font-weight="normal" xml:space="preserve" text-anchor="start" font-family="serif, sans-serif" font-size="18" id="svg_3" y="18" x="57.5" stroke-width="0" stroke="#000" fill="#18f3ad">Music</text>
+ </g>
+</svg>

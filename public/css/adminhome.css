@@ -1,0 +1,79 @@
+.admin .page {
+  width: 98%;
+  min-height: calc(100vh - 51px); }
+.admin .adminLeft {
+  width: 20%;
+  min-width: 150px;
+  float: left; }
+.admin .adminLeft .menu li {
+  padding-left: 20px;
+  padding: 10px 5px 10px 20px; }
+.admin .adminRight {
+  width: 80%;
+  min-width: 700px;
+  float: left; }
+.admin .main {
+  min-height: calc(100vh - 51px); }
+.admin .musicItem {
+  padding: 10px 0px;
+  margin-bottom: 10px;
+  background-color: #FFF;
+  box-shadow: 0px 0px 5px #AAA;
+  overflow: hidden; }
+.admin .musicItem.musicHeader {
+  font-weight: bold; }
+.admin .musicItem ul > li {
+  padding: 5px 10px;
+  min-width: 120px;
+  /*border-right: 1px solid #AAA;*/ }
+.admin .musicItem .title, .admin .musicItem .description {
+  width: 200px; }
+.admin .musicItem .image > div {
+  max-width: 150px;
+  position: relative;
+  height: 0;
+  padding-bottom: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #FFF;
+  margin: 5px;
+  box-shadow: 0px 0px 5px #666;
+  border: 1px solid #AAA; }
+.admin .musicItem .actionButtonContainer a {
+  width: 100%;
+  display: block; }
+.admin .musicItem .actionButtonContainer button {
+  padding: 5px 20px;
+  margin-bottom: 10px;
+  width: 100%;
+  cursor: pointer; }
+.admin .searchInputContainer {
+  margin: 10px 0px;
+  position: relative;
+  height: 50px; }
+.admin .searchInputContainer .searchInput {
+  padding: 10px 20px;
+  position: absolute;
+  right: 10px;
+  width: 300px; }
+.admin .homeInfo {
+  max-width: 400px;
+  margin: 0 auto; }
+.admin .homeInfo .homeInfoItem {
+  padding: 10px 20px;
+  margin-bottom: 10px; }
+.admin .homeInfo .homeInfoItem ul > li {
+  min-width: 150px;
+  text-align: right; }
+.admin .settingGeneral {
+  font-family: sans-serif; }
+.admin .settingGeneral h2 {
+  padding-left: 10px; }
+.admin .settingGeneral input {
+  padding: 10px 20px;
+  margin: 10px 20px; }
+.admin .settingGeneral button {
+  padding: 10px 25px; }
+
+/*# sourceMappingURL=adminhome.css.map */

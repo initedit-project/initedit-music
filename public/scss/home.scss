@@ -1,0 +1,3812 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 15, 2016, 10:41:00 PM
+    Author     : home
+*/
+
+$accent: #18F3AD;
+$highlight: #C7F9F7;
+$errorBackground:#f5d7d7;
+$errorBorder:#fb8484;
+$error : #fb8484;
+
+/*Start Mixing*/
+@mixin pageContainer() {
+    margin: 0 auto;
+    width: 100%;
+}
+@mixin page() {
+    width: 80%;
+    margin: 0 auto;
+    min-width: 950px;
+    display: block;
+    @media screen and (max-width: 320px) {
+        min-width: 100%;
+    }
+    @media screen and (max-width: 460px) {
+        min-width: 100%;
+    }
+    @media screen and (max-width: 620px) {
+        min-width: 100%;
+    }
+    @media screen and (max-width: 720px) {
+        min-width: 100%;
+    }
+    @media screen and (max-width: 950px) {
+        min-width: 100%;
+    }
+}
+@mixin transition($args...) {
+    -webkit-transition: $args;
+    -moz-transition: $args;
+    -ms-transition: $args;
+    -o-transition: $args;
+    transition: $args;
+}
+::selection {
+    background: $accent; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+    background: $accent; /* Gecko Browsers */
+}
+
+*{
+    /*    transition: all 0.2s ease-in-out;
+        -webkit-transition: all 0.2s ease-in-out;*/
+    box-sizing: border-box;
+}
+
+.scrollBar{
+    background:
+        /* Shadow covers */
+        linear-gradient(white 30%, rgba(255,255,255,0)),
+        linear-gradient(rgba(255,255,255,0), white 70%) 0 100%,
+
+        /* Shadows */
+        radial-gradient(50% 0, farthest-side, rgba(0,0,0,.4), rgba(0,0,0,0)),
+        radial-gradient(50% 100%,farthest-side, rgba(0,0,0,.4), rgba(0,0,0,0)) 0 100%;
+    background:
+        /* Shadow covers */
+        linear-gradient(white 30%, rgba(255,255,255,0)),
+        linear-gradient(rgba(255,255,255,0), white 70%) 0 100%,
+
+        /* Shadows */
+        radial-gradient(farthest-side at 50% 0, rgba(0,0,0,.4), rgba(0,0,0,0)),
+        radial-gradient(farthest-side at 50% 100%, rgba(0,0,0,.4), rgba(0,0,0,0)) 0 100%;
+    background-repeat: no-repeat;
+    background-color: white;
+    background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
+
+    /* Opera doesn't support this in the shorthand */
+    background-attachment: local, local, scroll, scroll;
+}
+
+
+
+.scrollBar::-webkit-scrollbar {
+    width: 12px;
+}
+
+.scrollBar::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    /*border-radius: 10px;*/
+}
+
+.scrollBar::-webkit-scrollbar-thumb {
+    /*border-radius: 10px;*/
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+
+html, body {
+    padding: 0px;
+    margin: 0px;
+    font-size: 16px;
+    font-family: serif, 'Tangerine';
+    width: 100%;
+    height: 100%;
+}
+a{
+    cursor: pointer;
+    text-decoration: none;
+    color: #222;
+}
+.hl {
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+    display: inline-block;
+    > li{
+        float: left;
+    }
+}
+.vl {
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+}
+.right{
+    float: right;
+}
+.left{
+    float: left;
+}
+.none{
+    display: none;
+}
+.headerContainer {
+    @include pageContainer();
+    border-bottom: 1px solid $accent;
+
+    .header {
+        @include page;
+
+        background: #FFF;
+        vertical-align: middle;
+        z-index: 2;
+
+        height: 50px;
+
+        & > *{
+            height: inherit;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+    }
+    .siteName {
+        font-size: 1.2rem;
+    }
+    .siteName > li:first-child {
+        color: #666666;
+    }
+    .siteName > li:last-child {
+        color: $accent;
+    }
+    .uploadTitle{
+        font-family: sans-serif;
+        font-weight: bold;
+    }
+    .settingMenuContainer {
+        position: relative;
+        cursor:pointer;
+        height: inherit;
+        margin-left: 10px;
+        .settingMenu {
+            position: absolute;
+            display: none;
+            right: 0px;
+            z-index: 2;
+            padding-top: 16px;
+            >li{
+                background-color: #111;
+                color: #FFFFFF;
+                font-weight: bold;
+                font-size: 1.1rem;
+                font-family: sans-serif;
+                &:hover{
+                    background-color: $accent;
+                }
+                &:hover a,&:hover span{
+                    color: #111;
+                }
+                >a,>span{
+                    color: #FFF;
+                    padding: 10px 50px 10px 20px;
+                    display: block;
+                    min-width: 150px;
+                }
+            }
+        }
+        .settingMenuThreeDotHighlight{
+            box-shadow: 0px 0px 5px #111;
+            &:before{
+                box-shadow: 0px 0px 5px #111;
+            }
+            &:after{
+                box-shadow: 0px 0px 5px #111;
+            }
+        }
+        .settingMenuThreeDot{
+            width: 10px;
+            height: 10px;
+            position: relative;
+            border-radius: 10px;
+            background-color: #111;
+            display: inline-block;
+            top: 15%;
+            margin: 10px 20px;
+            cursor:pointer;
+            &:before{
+                content: "";
+                width: 10px;
+                height: 10px;
+                position: absolute;
+                border-radius: 10px;
+                background-color: #111;
+                display: inline-block;
+                top: -15px;
+            }
+            &:after{
+                content: "";
+                width: 10px;
+                height: 10px;
+                position: absolute;
+                border-radius: 10px;
+                background-color: #111;
+                display: inline-block;
+                top: 15px;
+            }
+
+        }
+        &:hover{
+            background-color: #D3D3D3;
+        }
+        &:hover .settingMenu{
+            display: block;
+        }
+    }
+}
+
+.footer {
+    &{
+        height: 50px;
+        border-top: 1px solid $accent;
+        background: #FFF;
+        color: #000;
+        line-height: 50px;
+        display: block;
+        width: 100%;
+        @include pageContainer;
+        overflow: hidden;
+    }
+    .footerContent{
+        @include page;
+
+        a.inlink{
+            padding: 0px 10px;
+            margin-right: 10px;
+            display: block;
+        }
+    }
+    .normalLine{
+        line-height: normal;
+    }
+    .social{
+        &{
+            padding-top: 5px;
+            line-height: normal;
+        }
+        .icons{
+            width: 40px;
+            height: 40px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        .facebook{
+            background-image: url(/public/images/facebook-icon.svg)
+        }
+        .twitter{
+            background-image: url(/public/images/twitter-icon.svg)
+        }
+        .googleplus{
+            background-image: url(/public/images/google-plus-icon.svg)
+        }
+    }
+}
+
+main{
+    min-height: 600px;
+    position: relative;
+}
+.loaderContainer {
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    top: 0px;
+    bottom: 0px;
+    background: rgba(7, 243, 36, 0.6);
+    >img{
+        position: absolute;
+        left: 50%;
+        top: 50px;
+    }
+}
+.main{
+    background-color: #DDD;
+    min-height: calc(100vh - 102px); 
+    overflow: hidden;
+}
+.pageContainer{
+    margin: 0px auto;
+    min-width: 950px;
+    display: block;
+    background-color: rgb(200, 200, 200);
+    @include pageContainer;
+    &.defaultPageContainer, &.aboutContainer,&.loginContainer{
+        width: 70%;
+        max-width: 90%;
+        min-width: 950px;
+        @include page;
+    }
+}
+.page{
+    width: 100%; 
+    min-height: calc(100vh - 102px);
+    opacity: 1; 
+    background: rgb(255, 255, 255);
+    overflow: auto;
+    &.about{
+
+    }
+    >.about{
+        margin-left: 10px;
+        margin-right: 10px;
+        text-align: justify;
+        text-justify: inter-word;
+        overflow: hidden;
+        & .loginButton a{
+            padding: 5px 15px;
+            display: block;
+        }
+
+        &{
+            font-family: arial,sans-serif;
+            margin-left: 10px;margin-right: 10px;text-align: justify;text-justify: inter-word;
+            font-weight: bold;
+            margin: 0 50px;
+        }
+        p{
+            color: #666;
+        }       
+    }
+}
+.defaultPage{
+    min-height: auto;
+}
+.loginButton:hover {
+    background: #679e55;
+}
+.loginButton {
+    padding: 0px 10px;
+    font-weight: bold;
+    margin-right: 10px;
+    background: #67ae55;
+    color: #FFF;
+    border: 1px solid #005500;
+    cursor: pointer;
+
+}
+button.loginButton:disabled,input.loginButton:disabled{
+    background: #67ae55;
+    color: #CCC;
+}
+.loginContainer{
+    .loginBox{
+        width: 400px;
+        margin: 50px auto 20px auto;
+        border: 1px solid $accent;
+        padding: 10px 20px;
+        .input{
+            width: 100%;
+            padding: 5px 5px;
+            margin: 5px 0px;
+            border: 1px solid #AAA;
+            outline: none;
+        }
+        .input:hover{
+            border-color: #666;
+        }
+        .input:focus{
+            border-color: #333;
+        }
+        .loginButton{
+            padding: 5px 20px;
+        }
+        .loginTitle{
+            text-align: center;
+            img{
+                width: 200px;
+            }
+        }
+        .error{
+            display: none;
+            color: #fd0000;
+            padding: 10px 20px;
+            background-color: #f5d7d7;
+            border: 1px solid #fb8484;
+            margin-bottom: 20px;
+            border-radius: 3px;
+        }
+    }
+}
+.rightMessageBox{
+    position: fixed;right: 50px;top:55px;z-index: 15000;
+    .messageBox {
+        box-shadow: 0px 0px 3px #888888;
+        padding: 10px;
+        margin-bottom: 10px;
+        overflow: hidden;
+        width: 200px;
+        border-radius: 2px;
+        opacity: 0;
+        /*        transition: opacity 0.5s;
+                -webkit-transition: opacity 0.5s;
+                -o-transition: opacity 0.5s;
+                -ms-transition: opacity 0.5s;
+                -moz-transition: opacity 0.5s;*/
+        @include transition(opacity 0.5s);
+        position: relative;
+        background-color: #FFF;
+        .close {
+            float: right;
+            color: #777;
+            cursor: pointer;
+            position: absolute;
+            right: 0px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            font-family: monospace;
+            top: 0;
+            color: #FFF;
+            bottom: 0px;
+            width: 30px;
+            text-align: center;
+
+        }
+    }
+    .messageBoxRed .close {
+        background-color: #ff3232;
+    }
+    .messageBoxGreen .close {
+        background-color: #67ae55;
+    }
+    .messageBox .close:hover {
+        color: #333;
+    }
+
+    .messageBoxGreen {
+        /*background: #67ae55;*/
+        border: 1px solid #005500;
+    }
+
+    .messageBoxRed {
+        /*background: #ff3232;*/
+        border: 1px solid #ff1212;
+    }
+}
+.loggedInContainer{
+    text-align: center;
+    .title{
+        text-align: center;
+        font-size: 1.5rem;
+        color:#666;
+        font-family: sans-serif;
+    }
+    .loginButton{
+        padding: 5px 20px;
+    }
+}
+.uploadContainer{
+    .titleContainer{
+        text-align: center;
+        margin-top: 50px;
+    }
+    .uploadMusicFileInputContainer{
+        position:relative;
+        width:90%;
+        height: calc(100vh - 100px - 200px);
+        margin: 10px 5%;
+        /*min-height: 300px;*/
+        &{
+            height: 250px;
+        }
+        .text{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            vertical-align: middle;
+            padding-top: 40px;
+            font-size: 1.5rem;
+            font-family: sans-serif;
+            font-weight: bold;
+            color: #666;
+            border: 3px dashed #666;
+        }
+        .uploadMusicFileInput{
+            opacity: 0;
+            background-color: #000;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+    }
+
+    .musicUploadSingleUIContainer{
+        padding: 10px;
+        margin-bottom: 10px;
+        position:relative;
+        .title{
+            background-color: #CCC;
+            padding: 15px 5px;
+            button{
+                padding: 3px 15px;
+                margin: 0px 0px 0px 25px;
+                float: right;
+            }
+        }
+        .requestCancleContainer{
+            position: absolute;
+            width: 100%;
+            left: 0px;
+            top:0px;
+            bottom: 0px;
+            right: 0px;
+            background-color: rgba(243, 243, 243, 0.7);
+            z-index: 2;
+            padding: 10px;
+
+            &{
+                text-align: center;
+                padding-top: 20px;
+                display: none;
+            }
+            .cancelRequestButton{
+                padding: 5px 20px;
+                margin: 10px 10px;
+            }
+        }
+
+        .savedTitle{
+            background-color:$highlight;
+        }
+        .errorTitle{
+            background-color:$errorBackground;
+        }
+        .uploadProgress{
+            width: 0%;
+            height: 3px;
+            background-color: $accent;
+        }
+        .uploadProgressError{
+            background-color: $error;
+        }
+        .musicUploadError{
+            display: none;
+            color: #fd0000;
+            padding: 10px 10px;
+            background-color: #f5d7d7;
+            border-radius: 3px;
+        }
+
+        .detail{
+            display: none;
+            width: 100%;
+            padding-top: 10px;
+            overflow: hidden;
+            background-color: #F3F3F3;
+            padding-bottom: 10px;
+            .detailLeft{
+                float: left;
+                width:50%;
+                .musicUploadCover{
+                    position: relative;
+                    text-align: center;
+                    .uploadPreviewImage{
+                        max-width: 100%;
+                    }
+                    .musicUploadCoverInputContainer{
+                        position: absolute;
+                        width: 100%;
+                        bottom: 20px;
+                        left: 0;
+                        right: 0;
+                        text-align: center;
+                        .text{
+                            background-color: rgba(0, 0, 0, 0.82);
+                            padding: 5px 0px;
+                            width: 200px;
+                            margin: 0 auto;
+                            color: #FFF;
+
+                        }
+                        .musicUploadCoverInput{
+                            position: absolute;
+                            width: 100%;
+                            padding: 5px 0px;
+                            opacity: 0;
+                            top: 0;
+                            left: 0;
+                            cursor: pointer;
+                        }
+
+                    }
+
+                }
+            }
+            .detailRight{
+                float: left;
+                width:50%;
+                padding:0px 5%;
+                input[type='text'],textarea{
+                    background-color: #FFF;
+                    width: 100%;
+                    padding: 10px 15px;
+                    margin-bottom: 10px;
+                    margin-top: 10px;
+                }
+
+                .actionButtonContainer{
+
+                    button{
+                        padding: 5px 25px;
+                        margin: 0px 0px 0px 25px;
+                        float: right;
+                    }
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+
+    }
+
+    .uploadLoginContainer{
+        text-align: center;
+        padding-top: 50px;
+    }
+
+    .loginButton {
+        padding: 10px 15px;
+    }
+}
+
+.bottomPlayerContainer{
+    &{
+
+        position: fixed;
+        bottom: 0px;
+        width: 100%;
+        background-color: appworkspace;
+        border-top: 1px solid #333;
+        padding: 5px 0px;
+        @include pageContainer;
+        display: none;
+    }
+    .bottomPlayer{
+        @include page;
+        & >ul{
+            float: left;
+        }
+    }
+    .button{
+        width: 50px;
+        height: 50px;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-color: #FFF;
+        border: none;
+        position: relative;
+        margin-right: 10px;
+        cursor: pointer;
+        &:disabled{
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        &.bottomRepeatButton{
+            background-size: 37.5px 37.5px
+        }
+    }
+
+    .bottomMusicTimeContainer{
+        &{
+            height: 50px;
+            line-height: 50px;
+        }
+        .playedTime,.totalTime{
+            margin: 0px 10px;
+
+        }
+        & > li:first-child,& > li:last-child{
+            width: 50px;
+        }
+
+        .bottomMusicProgressContainer{
+            &{
+                min-width: 350px;
+                position: relative;
+                min-height: 5px;
+                top: 21px;
+                padding: 5px 0px;
+            }
+            > div{
+                width: inherit;
+                height: 2px;
+            }
+            .progressBackground, .progressStreamed,.progressPlayed{
+                position: absolute;
+                left: 0px;
+                right: 0px;
+            }
+            .progressBackground{
+                background-color: #333;
+            }
+            .progressStreamed{
+                background-color: #999;
+
+            }
+            .progressPlayed{
+                background-color: $accent;
+
+            }
+            .circle{
+                position: absolute;
+                width: 6px;
+                height: 6px;
+                border-radius: 20px;
+                background-color: $accent;
+                bottom: 1px;
+            }
+            &:hover .circle{
+                width: 10px;
+                height: 10px;
+                bottom: 0px;
+                box-shadow: 0px 0px 5px $accent;
+            }
+            .input{
+                position: absolute;
+                top: 0px;
+                width: 100%;
+                height: 4px;
+                bottom: 0px;
+                opacity: 0;
+                cursor: pointer;
+            }
+
+
+        }
+
+
+    }
+    .bottomPlayingMusic{
+        &{
+            position: relative;
+            height: 50px;
+            overflow: hidden;
+            width: 250px;
+            background-color: azure;
+            padding-top: 5px;
+            box-shadow: 0px 0px 5px #AAA;
+        }
+        .image{
+            width: 37.5px;
+            height: 37.5px;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-color: #FFF;
+            border-radius: 5px;
+            margin: 7.5px;
+            margin-top: 0px;
+        }
+        .title{
+            position: absolute;
+            left: 55px;
+            top: 2px;
+            height: 16px;
+            width: calc(100% - 50px);
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden !important;
+            text-overflow: ellipsis;
+        }
+        .username{
+            position: absolute;
+            left: 55px;
+            top: 20px;
+            min-width: 150px;
+            color: #666;
+        }
+
+    }
+    .volumeChangeContainer{
+        &{
+            height: 100px;
+            padding: 10px 10px;
+            position: absolute;
+            bottom: 100%;
+            background-color: #FFF;
+            box-sizing: content-box;
+            border-radius: 3px;
+            box-shadow: 0px 0px 3px #AAA;
+            display: none;
+            margin-left: 15px;
+        }
+        .volumeContainer{
+            &{
+                width: 3px;
+                background-color: $accent;
+                height: inherit;
+                position: absolute;
+            }
+            &.background{
+                background-color: #333;
+            }
+        }
+        .circle{
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 20px;
+            background-color: $accent;
+            left: 9px;
+            margin-top: 10px;
+
+        }
+        &:hover .circle{
+            width: 10px;
+            height: 10px;
+            left: 7.5px;
+            box-shadow: 0px 0px 5px $accent;
+        }
+        .input{
+            position: absolute;
+            top: 0px;
+            width: 100px;
+            height: 20px;
+            transform: rotate(90deg);
+            bottom: 0px;
+            transform-origin: center left;
+            opacity: 0;
+            cursor: pointer;
+        }
+    }
+    .bottomPlaylistContainer{
+        &{
+            height: 400px;
+
+            position: absolute;
+            bottom: 100%;
+            background-color: #FFF;
+            box-sizing: content-box;
+            border-radius: 3px;
+            box-shadow: 0px 0px 3px #AAA;
+            min-width: 300px;
+            margin-left: -150px;
+            display: none;
+        }
+        .bottomPlatlistItemContainer{
+            display: block;
+            overflow-y: auto;
+            height: inherit;
+            overflow-x: hidden;
+            padding: 10px 10px;
+        }
+        .bottomEmptyPlaylist{
+            color: #666;
+            margin: 15px 0px;
+            text-align: center;
+
+        }
+        .bottomPlaylistItem{
+            &{
+                position: relative;
+                height: 50px;
+                overflow: hidden;
+                width: 200px;
+                background-color: azure;
+                padding-top: 5px;
+                box-shadow: 0px 0px 5px #AAA;
+                min-width: 100%;
+                cursor: pointer;
+            }
+            &.highlight{
+                border-left: 3px solid $accent;
+                background-color: rgba(24,243,173,0.2);
+            }
+            .image{
+                width: 37.5px;
+                height: 37.5px;
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-color: #FFF;
+                border-radius: 5px;
+                margin: 7.5px;
+                margin-top: 0px;
+            }
+            .title{
+                position: absolute;
+                left: 55px;
+                top: 2px;
+                height: 16px;
+                min-width: 150px;
+                font-weight: bold;
+                white-space: nowrap;
+                overflow: hidden !important;
+                text-overflow: ellipsis;
+            }
+            .username{
+                position: absolute;
+                left: 55px;
+                top: 20px;
+                min-width: 150px;
+                color: #666;
+            }
+
+        }
+    }
+}
+.musicItemCard{
+    &{
+        float:left;
+        padding: 10px;
+        width: calc(16.6667%);
+        /*width: calc(20%);*/
+        /*min-height: 150px;*/
+    }
+    .backgroundImage{
+        min-width: inherit;
+        min-height: inherit;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: #FFF;
+        position: relative;
+        height: 0;
+        padding-bottom: 100%;
+
+
+    }
+    .title{
+        position: relative;
+        padding-right: 30px;
+        .titleText{
+            white-space: nowrap;
+            overflow: hidden !important;
+            text-overflow: ellipsis;
+        }
+    }
+    .musicSetting{
+
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-color: transparent;
+        border: none;
+        right: 0px;
+        top: 0px;
+        cursor: pointer;
+    }
+    .musicSettingItems{
+        &{
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+            display: none;
+        }
+        > li{
+            &{
+                background-color: rgba(0,0,0,0.6);
+                color: #FFF;
+                border-top: 1px solid #000;
+                padding: 3px 10px;
+                cursor: pointer;
+                font-size: 0.8rem;
+            }
+            &:hover{
+                background-color:rgba(0,0,0,0.9);
+            }
+
+        }
+    }
+    .playPauseButton{
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 50%;
+        margin-top: -25px;
+        left: 50%;
+        margin-left: -25px;
+        display: none;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-color: transparent;
+        cursor: pointer;
+        box-shadow: 0px 2px 5px #222;
+        border-radius: 50px;
+    }
+    .playPauseButton:hover{
+        box-shadow: 0px -2px 5px #222;
+    }
+    .playPauseButton:active{
+        box-shadow: 0px 0px 5px #222;
+    }
+    .userInfo{
+        position: relative;
+    }
+}
+.homeContainer{
+    &{
+        @include pageContainer;
+    }
+    .home{
+        width: 70%;
+        margin: 0 auto;
+        @include page;
+    }
+}
+.fullMusicContainer{
+    &{
+        position: relative;
+    }
+    .fullMusicCover{
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        -webkit-filter: blur(5px);
+        -moz-filter: blur(5px);
+        -o-filter: blur(5px);
+        -ms-filter: blur(5px);
+        filter: blur(5px);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .fullMusicDetailContainer{
+        &{
+            height: 300px;
+            padding: 0% 5%;
+            background-color: rgba(255,255,255,0.2);
+            /* z-index: 2; */
+            position: relative;
+            padding-top: 50px;
+        }
+
+        .imagethumb,.imagethumbright{
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 200px;
+            height: 200px;
+            float: left;
+            position: relative;
+
+        }
+        .imagethumbplay{
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -25px;
+            margin-top: -25px;
+            width: 50px;
+            height: 50px;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .imagethumbright{
+            float: right;
+        }
+        .leftInfo{
+            &{
+                margin-left: 200px;
+                top: 50px;
+                position: absolute;
+            }
+            >ul > li{
+                padding: 10px 20px;
+                margin-bottom: 5px;
+                background-color: rgba(0,0,0,0.8);
+                min-width: 180px;
+                color: #FFF;
+                >a {
+                    color: #FFF;
+                }
+            }
+        }
+        .rightInfo{
+            &{
+                margin-right: 200px;
+                top: 50px;
+                position: absolute;
+                right: 5%;
+            }
+            >ul > li{
+                padding: 10px 20px;
+                margin-bottom: 5px;
+                background-color: rgba(0,0,0,0.8);
+                min-width: 180px;
+                color: #FFF;
+                >a {
+                    color: #FFF;
+                }
+            }
+        }
+        .waveformContainer{
+            &{
+                position: relative;
+                height: 100px;
+                margin: 100px 200px 0 200px;
+            }
+            img{
+                width: calc(100% - 400px);
+                position: absolute;
+                display: none;
+            }
+            canvas,div{
+                width: calc(100%);
+                position: absolute;
+                height: 100px;
+                bottom: 0px;
+                cursor: pointer;
+            }
+            div{
+                overflow: hidden;
+                width: 0px;
+            }
+            .playedWaveform,.seekWaveform{
+                /*width: 0px;*/ 
+            }
+        }
+    }
+    .fullScreenMenu{
+        &{
+            position: relative;
+
+        }
+        > ul{
+            width: 100%;
+        }
+        > ul > li{
+            padding: 10px 20px; 
+            background-color: #FFF;
+            height: 50px;
+            line-height: 30px;
+            &:hover{
+                background-color: rgba(255, 255, 255, 0.2);
+            }
+            cursor: pointer;
+
+            > button{
+                background-color: transparent;
+                width: 30px;
+                height:30px;
+                background-repeat: no-repeat;
+                background-size: 30px 30px;
+                border: none;
+            }
+        }
+        > ul > li:first-child{
+            background-color: #FFF;
+            width: 70px;
+            cursor: default;
+        }
+        > ul > li:last-child{
+            background: #FFF;
+            overflow: hidden;
+            float: none;
+            height: 50px;
+            opacity: 1;
+            cursor: default;
+        }
+    }
+}
+.addToPlaylistContainer{
+    &{
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height:100%;
+        background-color: #FFF;
+        display: none;
+    }
+    .close{
+        &{
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            padding: 10px 10px;
+            background-color: #FFF;
+            border: none;
+            border-radius: 50px;
+            box-shadow: 0px 0px 5px #111;
+            outline: none;
+            cursor: pointer;
+        }
+        &:hover{
+            box-shadow: 0px 0px 10px $error;
+        }
+        img{
+            max-width: 20px;
+            max-height: 20px;
+        }
+    }
+    .playlistLoginContainer{
+        text-align: center;
+        padding-top: 50px;
+    }
+
+    .loginButton {
+        padding: 10px 15px;
+    }
+    .playlistAddContainer{
+        &{
+            width: 400px;
+            margin: 0 auto;
+        }
+        .titleContainer{
+            &{
+                width: 100%;
+            }
+
+            >li{
+                &{
+                    width:50%;
+                    padding: 10px 20px;
+                    border-bottom: 2px solid transparent;
+                    cursor: pointer;
+                }
+                &.highlight{
+                    border-color: $accent;
+                }
+            }
+
+        }
+        .newPlaylistName{
+            width: 100%;
+            padding: 5px 3px;
+            margin-bottom: 10px;
+        }
+        .margingSpace{
+            margin-bottom: 10px;
+        }
+        .createNewPlaylistContainer{
+            margin-top: 20px;
+            display: none;
+        }
+        .error{
+            padding: 10px 5px;
+            background: $errorBackground;
+            border: 1px solid $errorBorder;
+            color: $error;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            border-radius: 3px;
+            display: none;
+        }
+        .emptyPlaylistAdd{
+            padding: 10px 0px;
+            text-align: center;
+            color: #999;
+
+        }
+    }
+    .playlistItemsContainer{
+        &{
+            margin-top: 20px;
+        }
+        .playlistItem{
+            padding: 10px 5px;
+            border: 1px solid #AAA;
+            margin-bottom: 5px;
+            position: relative;
+        }
+        .name{
+            position: relative;
+            padding-right: 70px;
+        }
+        .action{
+            &{
+                position: absolute;
+                right: 0px;
+                top: 0px;
+                width: 70px;
+                bottom: 0;
+            }
+            >button{
+                width: 70px;
+                height: 100%;
+                border: 1px solid #005500;
+            }
+            .added{
+                cursor: pointer;
+            }
+
+        }
+    }
+}
+.shareDialogBoxContainer{
+    &{
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height:100%;
+        background-color: #FFF;
+        display: none;
+    }
+    .close{
+
+        &{
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            padding: 10px 10px;
+            background-color: #FFF;
+            border: none;
+            border-radius: 50px;
+            box-shadow: 0px 0px 5px #111;
+            outline: none;
+            cursor: pointer;
+        }
+        &:hover{
+            box-shadow: 0px 0px 10px $error;
+        }
+        img{
+            max-width: 20px;
+            max-height: 20px;
+        }
+
+    }
+    .shareDialogBox{
+        text-align: center;
+        padding-top: 50px;
+        width: 300px;
+        margin: 0 auto;
+    }
+    .googleShare,.twitterShare{
+        width: 300px;
+        color: #FFF;
+        display: inline-block;
+        padding: 10px 15px;
+        margin-bottom: 20px;
+    }
+    .googleShare{
+        background-color: #dc4e41;
+    }
+    .twitterShare{
+        background-color: #55acee;
+    }
+}
+.paggingContainer{
+    &{
+        @include page;
+        padding: 10px 0px;
+        background-color: #FFF;
+        overflow: hidden;
+    }
+    .paging{
+        float: right;
+    }
+    button{
+
+        padding: 5px 25px;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+}
+.user{
+    &{
+
+    }
+    .notfound{
+        margin-top: 50px;
+        text-align: center;
+        color: #666;
+    }
+}
+.userHeader{
+    .userCover{
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        height: 300px;
+        width: 100%;
+        position: relative;
+    }
+
+    .coverChangeContainer{
+        &{
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
+        .coverChangeButton{
+            &{
+                padding: 10px 25px;
+                min-width: 200px;
+                text-align: center;
+            }
+            > .text{
+
+            }
+            .imageFile{
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0px;
+                left: 0px;
+                background-color: #FFF;
+                opacity: 0;
+                cursor: pointer;
+            }
+        }
+        .coverImageActionContainer{
+            &{
+                position: absolute;
+                width: 100%;
+                margin-top: 5px;
+                display: none;
+            }
+            button{
+                &{
+                    padding: 5px 10px;
+                    width:93px;
+                }
+            }
+            .save{
+                margin-right: 5px;
+            }
+            .cancel{
+                margin-left: 5px;
+            }
+        }
+    }
+    .profileImageContainer{
+        &{
+            position: absolute;
+            top: 50px;
+            left: 50px;
+
+        }
+        &:hover .profileImageUpload{
+            max-height: 200px;
+        }
+        .profileImage{
+            width: 200px;
+            height: 200px;
+        }
+
+        .profileImageUpload{
+            &{
+                height: 50px;
+                width: 100%;
+                position: absolute;
+                bottom: 0px;
+                background-color: rgba(0,0,0,0.9);
+                color: #FFF;
+                text-align: center;
+                max-height: 0px;
+                overflow: hidden; 
+                @include transition(max-height 0.5s)
+            }
+            > .text{
+                padding: 10px 20px;
+            }
+            .imageFile{
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0px;
+                left: 0px;
+                background-color: #FFF;
+                opacity: 0;
+                cursor: pointer;
+            }
+
+        }
+        .profileImageActionContainer{
+            &{
+                position: absolute;
+                width: 100%;
+                display: none;
+            }
+            button{
+                &{
+                    padding: 5px 10px;
+                    width:93px;
+                }
+            }
+            .save{
+                margin-right: 5px;
+            }
+            .cancel{
+                margin-left: 5px;
+            }
+        }
+    }
+    .profileName{
+        /*min-width: 150px;*/
+        padding: 8px 15px;
+        position: absolute;
+        left: 250px;
+        margin-left: 20px;
+        background-color: #000;
+        color: #FFF;
+        top: 50px;
+    }
+    .userProfileMenu{
+        &{
+            background-color: #FFF;
+            padding: 0px 50px;
+            width: 100%;
+        }
+        >li{
+            &{
+
+            }
+            >a{
+                &{
+                    padding: 15px 25px;
+                    display: inline-block;
+                    border-bottom: 2px solid transparent;
+                }
+                &.highlight{
+                    border-color: $accent;
+                }
+            }
+        }
+    }
+}
+.userPlaylistItemContainer{
+    &{
+
+    }
+    >.title{
+
+        padding: 10px 0px 10px 10px;
+        font-weight: bold;
+        font-family: sans-serif;
+        position: relative;
+    }
+    .content{
+        clear: both;
+        overflow: hidden;
+    }
+    .userPlaylistMenuButtonContainer{
+        &{
+            position: absolute;
+            top: 0px;
+            right: 10px;
+            float: left;
+
+        }
+        .menuButton{
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-color: transparent;
+            border: none;
+            right: 0px;
+            top: 0px;
+            cursor: pointer;
+        }
+        .menuContent{
+            &{
+                position: absolute;
+                top: 30px;
+                right: 0px;
+                display: none;
+                border: 1px solid #AAA;
+                z-index: 1;
+            }
+            >li{
+                &{
+                    padding: 10px 25px;
+                    background-color: #FFF;
+                    border-bottom: 1px solid #AAA;
+                    cursor: pointer;
+                }
+
+                &:hover{
+                    background-color: #CCC;
+                }
+
+            }
+        }
+        .deleteMenu,.privacyMenu{
+            &{
+                min-width: 250px;
+                text-align: center;
+
+            }
+            button{
+                margin-top: 15px;
+                padding: 5px 20px;
+                cursor: pointer;
+            }
+        }
+        .deleteMenu{
+
+        }
+        .privacyMenu{
+            &{
+
+            }
+            select{
+                &{
+                    margin-top: 10px;
+                    padding: 5px 25px;
+                }
+            }
+        }
+
+    }
+}
+
+.errorPageContainer{
+    text-align: center;
+    margin-top: 30px;
+    color: #666;
+}
+.emptySetting{
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
+
+}
+.singlePlaylistHeader{
+    &{
+        background-color: #FFF;
+        position: relative;
+
+    }
+    .title{
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.5rem;
+        font-family: sans-serif;
+        padding: 70px 0px;
+        position: relative;
+    }
+    .userInfo{
+        &{
+            text-align: center;
+            position: relative;
+        }
+        .userImage{
+            width: 50px;
+            height: 50px;
+            border-radius: 100px;
+            box-shadow: 0px 0px 5px #AAA;
+        }
+    }
+    .gradient{
+        background: -webkit-linear-gradient(#FFF, #333); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(red, yellow); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(red, yellow); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(#FFF, #333); 
+        position: absolute;
+        height: inherit;
+        width: 100%;
+        height: 200px;
+        opacity: 0.8;
+    }
+
+    .playlistBackgroundScrollContainer{
+        position: absolute;
+        height: inherit;
+        width: 100%;
+
+    }
+    .playlistBackgroundScroll{
+        position: absolute;
+        top:0px;
+        left: 0px;
+        width: 150%;
+        overflow: hidden;
+        height: inherit;
+        min-width: 1300%;
+    }
+
+}
+.hashSingleHeader{
+    &{
+        margin: 10px 0px;
+    }
+    .title{
+        &{
+            text-align: center;
+        }
+        .hashSymbol{
+            font-size: 3rem;
+            color: $accent;
+            font-family: sans-serif;
+        }
+    }
+
+}
+.privacy,.cookie,.help{
+    &{
+        font-family: arial,sans-serif;
+        margin-left: 10px;margin-right: 10px;text-align: justify;text-justify: inter-word;
+        font-weight: bold;
+        margin: 0 50px;
+    }
+    p{
+        color: #666;
+    }
+    .title{
+        text-align: center;
+    }
+    ol{
+        color: #666;
+    }
+}
+.searchButton{
+    width: 50px;
+    height: 50px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #FFF;
+    border: none;
+    position: relative;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.siteButton{
+    width: 140px;
+    height: 50px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #FFF;
+    border: none;
+    position: relative;
+    margin-right: 10px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+.siteIcon{
+    /**/
+    width: 100px;
+    height: 40px;
+
+}
+.searchDialogBoxContainer{
+    &{
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height:100%;
+        background-color: #FFF;
+        overflow-y: auto;
+        display: none;
+        z-index: 2;
+    }
+    .close{
+        &{
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            padding: 10px 10px;
+            background-color: #FFF;
+            border: none;
+            border-radius: 50px;
+            box-shadow: 0px 0px 5px #111;
+            outline: none;
+            cursor: pointer;
+        }
+        &:hover{
+            box-shadow: 0px 0px 10px $error;
+        }
+        img{
+            max-width: 20px;
+            max-height: 20px;
+        }
+    }
+    .searchInputContainer{
+        &{
+            margin-top: 60px;
+            position: relative;
+
+        }
+        .leftLine{
+            content: "";
+            width: 2px;
+            position: absolute;
+            left: 0px;
+            height: 10px;
+            bottom: 0px;
+            background: $accent;
+            margin-left: 2%;
+        }
+        .rightLine{
+            content: "";
+            width: 2px;
+            position: absolute;
+            right: 0px;
+            height: 10px;
+            bottom: 0px;
+            background: $accent;
+            margin-right: 2%;
+        }
+    }
+    .searchInput{
+        &{
+            outline: none;
+            padding: 1%;
+            font-weight: bold;
+            border: 0px;
+            font-size: 3em;
+            border-bottom: 2px solid $accent;
+            width: 96%;
+            margin: 0% 2%;
+        }
+
+    }
+    .searchResultDialogContainer{
+        &{
+            background-color: #FFF;
+        }
+        .searchResultDialog{
+            @include page;
+        }
+    }
+    .noResultFound{
+        text-align: center;
+        color: #666;
+    }
+    .searchDialogMainContent{
+        &{
+            position: relative;
+        }
+        .searchDialogMainContentLoading{
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 96%;
+            height: 100%;
+            background-color: rgba(120,120,120,0.6);
+            margin:0% 2%;
+            display: none;
+        }
+    }
+}
+.mainProgressBar{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 3px;
+    background-color: $accent;
+    display: none;
+    box-shadow: 3px 0px 5px #AAA;
+    @include transition(width 0.5s);
+}
+.fullMusicChangePrivacyContainer{
+    &{
+        position: relative;
+    }
+    .fullMusicChangePrivacyBox{
+        &{
+            position: absolute;
+            left: -50%;
+            top: 50px;
+            min-width: 300px;
+            background-color: #FFF;
+            text-align: center;
+            padding: 10px 10px;
+            z-index: 2;
+            padding-bottom: 20px;
+            box-shadow: 0px 0px 5px #000;
+            display: none;
+        }
+        select{
+            padding: 5px 20px;
+        }
+        .title{
+            font-family: sans-serif;
+            font-weight: bold;
+            margin: 5px 0px;
+        }
+    }
+}
+.editMusic{
+    &{
+        width: 90%;
+        margin: 0 auto;
+    }
+    .title{
+        text-align: center;
+        font-family: sans-serif;
+        padding: 25px 0px;
+    }
+    .error{
+        padding: 10px 5px;
+        background: $errorBackground;
+        border: 1px solid $errorBorder;
+        color: $error;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        border-radius: 3px;
+        display: none;
+        margin: 10px 5%;
+    }
+    .actionButtonDelete{
+        &{
+
+            margin: 10px 0px;
+            height: 60px;
+        }
+        button{
+            float: right;
+            margin-left: 20px;
+            padding: 10px 25px;
+            margin-right: 0px;
+            cursor: pointer;
+        }
+    }
+
+    .editMusicContent{
+        &{
+            margin: 20px 0px;
+            overflow: hidden;
+        }
+        >*{
+            width: 50%;
+            float: left;
+        }
+
+
+        .leftContent{
+            &{
+
+            }
+            .image{
+                /* min-width: 300px; */
+                height: 300px;
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-color: #FFF;
+                margin: 0 auto;
+                position: relative;
+                /* width: 80%; */
+                height: 0;
+                padding-bottom: 70%;
+                position: relative;
+                width: 70%;
+            }
+            .selectImageInputContainer{
+                &{
+                    position: absolute;
+                    bottom: 0px;
+                    left: 0px;
+                    width:100%;
+                    height: 50px;
+                }
+                > *{
+                    position: absolute;
+                    left: 0px;
+                    top: 0px;
+                    width:100%;
+                    height: 100%;
+                }
+                &:first-child{
+                    background-color: rgba(20,20,20,0.6);
+                    color:#FFF;
+                    padding: 5px 25px;
+                    text-align: center;
+
+                }
+                & > *:first-child{
+                    padding-top: 10px;
+                }
+                & > *:last-child{
+                    opacity: 0;
+                    cursor: pointer;
+                }
+            }
+        }
+        .rightContent{
+            input[type="text"],textarea,.actionButtonContainer{
+                width: 100%;
+                margin: 0 auto;
+                margin-bottom: 20px;
+                padding: 5px 10px;
+            }
+            textarea{
+                margin-top: 20px;
+            }
+            .actionButtonContainer{
+                &{
+                    padding-right: 0px;
+                }
+                button{
+                    float: right;
+                    margin-left: 20px;
+                    padding: 10px 25px;
+                    margin-right: 0px;
+                    cursor: pointer;
+                }
+            }
+
+
+        }
+
+    }
+    .confirmDeleteContainerBox{
+        &{
+            position: relative;
+            float: right;
+        }
+        .confirmDeleteContainer{
+            position: absolute;
+            top: 0px;
+            box-shadow: 0px 0px 5px #222;
+            min-width: 250px;
+            padding: 10px 20px;
+            right: 0px;
+            background-color: #FFF;
+            display: none;
+        }
+        .title{
+            text-align: center;
+            margin: 0;
+        }
+        button{
+            float: none;
+        }
+    }
+}
+.homeSliderContainer{
+    &{
+        position: relative;
+        height: 300px;
+        overflow: hidden;
+    }
+    .sliderCircleContainer{
+        &{
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            z-index: 0;
+
+        }
+        .sliderCircle{
+            &{
+                width:15px;
+                height: 15px;
+                border-radius: 50px;
+                background-color: #CCC;
+                display: inline-block;
+                margin: 10px;
+                box-shadow: 0px 2px 3px #333;
+                cursor: pointer;
+            }
+
+
+            &.highlight{
+                background-color: $accent;
+            }
+        }
+
+
+
+    }
+    .homeSlider{
+        &{
+            position: absolute;
+            height: inherit;
+            width: 100%;
+            overflow: hidden;
+        }
+        > .sliderItem{
+            position: relative;
+            width:100%;
+            height: inherit;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-color: #FFF;
+            float: left;
+
+        }
+
+
+
+        .surpriseText,.bestOfYear{
+            position: absolute;
+            top: 50px;
+            left: 100px;
+            color: $accent;
+            font-size: 2em;
+            font-family: sans-serif;
+        }
+        .bestOfYear{
+
+        }
+    }
+}
+.home{
+    &{
+
+    }
+    .homeMenu{
+        &{
+            font-size: 1.5rem;
+            font-family: sans-serif;
+            font-weight: bold;
+        }
+        >a{
+            &{
+                margin: 5px 10px 5px 10px;
+                padding: 10px 10px;
+                border-bottom: 2px solid transparent;
+                display: inline-block;
+            }
+            &.highlight{
+                border-color: $accent;
+            }
+        }
+    }
+    .homeTitle{
+        &{
+
+        }
+        .title{
+            padding-left: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+    }
+}
+.topMenuButton{
+    display: none;
+    background-size: contain;
+    background-position: center;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    float: right; 
+
+}
+.topMenuContent{
+    &{
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width:100%;
+        height: 100%;
+        background-color: #FFF;
+        display: none;
+        overflow-y: auto;
+    }
+    .closeButtonContainer{
+        &{
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+        .close{
+            &{
+                position: absolute;
+                right: 0px;
+                top: 0px;
+                padding: 10px 10px;
+                background-color: #FFF;
+                border: none;
+                border-radius: 50px;
+                box-shadow: 0px 0px 5px #111;
+                outline: none;
+                cursor: pointer;
+            }
+            &:hover{
+                box-shadow: 0px 0px 10px $error;
+            }
+            img{
+                max-width: 20px;
+                max-height: 20px;
+            }
+        }
+    }
+    .settingMenu{
+        &{
+            margin-top: 50px;
+        }
+        >li{
+            & > a,& > span{
+                padding: 15px 20px;
+                display: block;
+                font-family: sans-serif;
+                font-weight: bold;
+                text-align: center;
+            }
+        }
+    }
+}
+.waveformTypeContainer{
+    &{
+        position: absolute;
+        background-color: #FFF;
+        padding: 10px;
+        top: 100%;
+        z-index: 1;
+        display: none;
+        margin-left: -20px;
+
+    }
+    > *{
+        padding: 10px 20px;
+        font-weight: bold;
+        font-family: sans-serif;
+
+    }
+}
+
+
+@media screen and (max-width: 320px) {
+    .headerContainer {
+        .header{
+            & > *{
+                display: none;
+            }
+            & :first-child{
+                &{
+                    display: block;
+                }
+                & > li.right {
+                    &{
+                        float: right;
+                    }
+                    .topMenuButton{
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+
+    .homeSliderContainer {
+        height: 150px;
+    }
+    .siteButton{
+        width: 180px;
+        height: 50px;
+        border: none;
+        outline: none;
+
+    }
+    .pageContainer {
+        &{
+            min-width: 100%;
+        }
+        .sliderItem > *{
+            &{
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                top: 0px;
+                left: 0px;
+            }
+            &.bestOfYear,&.surpriseText{
+                top: 0px;
+                left: 0px;
+            }
+        }
+    }
+    .musicItemCard{
+
+        width:  100%;
+
+        .title{
+            &{
+
+            }
+            .titleText{
+                padding: 5px 0px;
+            }
+        }
+        .musicSettingItems{
+            &{
+                left: 0px;
+            }
+            > li {
+                padding: 10px 10px;
+                font-size: 1rem;
+            }
+        }
+    }
+    .footer{
+        &{
+
+        }
+        .footerContent{
+            &{
+
+            }
+            &>ul:first-child{
+                width: 100%;
+            }
+            &>ul:last-child{
+                display: none;
+            }
+        }
+    }
+    .bottomPlayerContainer{
+        &{
+
+        }
+        .bottomPlayer{
+            &{
+
+            }
+            & >ul{
+                float: none;
+            }
+            & > *{
+                display: none;
+            }
+            & > ul:first-child{
+                &{
+                    display: block; 
+                }
+                & > li{
+                    min-width: 33.33%;
+                    text-align: center;
+                }
+            }
+        }
+    }
+    .fullMusic{
+        &{
+
+        }
+        .fullMusicDetailContainer{
+            &{
+
+            }
+            .leftInfo,.rightInfo,.imagethumbright{
+                display: none;
+            }
+            .imagethumb{
+                float: none;
+                margin: 0 auto;
+            }
+
+        }
+        .fullScreenMenu{
+            &{
+
+            }
+            >ul >li:not(.none){
+                display: block;
+                width: 100%;
+                float: none;
+            }
+            >ul >li:first-child,>ul >li:last-child{
+                display: none;
+            }
+            >ul li.waveformTypeContainerBox{
+                display: none;
+            }
+        }
+
+    }
+    .userHeader{
+        &{
+
+        }
+        .userCover{
+            height: 150px;
+        }
+        .profileImageContainer{
+            &{
+
+            }
+            .profileImage{
+                width: 80px;
+                height: 80px;
+                border-radius: 100px;
+            }
+
+        }
+        .profileName{
+            left:150px;
+        }
+        .userProfileMenu{
+            &{
+                padding: 0px 10px;
+            }
+            >li{
+                &{
+                    display: block;
+                    float: none;
+                    width: 100%;
+                }
+                a{
+                    &{
+                        width: 100%;
+                    }
+                    &.highlight{
+                        background-color: $highlight;
+                    }
+                }
+            }
+        }
+
+    }
+    .userPlaylistItemContainer{
+        &{
+
+        }
+        .content{
+            min-height: 80px;
+        }
+    }
+    .privacy, .cookie, .help{
+        margin: 0px 10px;
+    }
+    .page{
+        &{
+
+        }
+        .about{
+            margin: 0px 10px;
+        }
+    }
+    .loginContainer{
+        &{
+
+        }
+        .loginBox{
+            width:100%;
+        }
+    }
+    .addToPlaylistContainer{
+        &{
+
+        }
+        .close{
+            right: 5px;
+            top: 5px;
+        }
+        .playlistAddContainer{
+            &{
+                margin-top: 40px;
+                width: 320px;
+            }
+            .titleContainer{
+                &{
+
+                }
+                > li{
+                    padding: 10px 15px;
+                }
+            }
+        }
+    }
+
+}
+
+@media screen and (min-width: 321px) and  (max-width: 460px) {
+
+    .headerContainer {
+        .header{
+            & > *{
+                display: none;
+            }
+            & :first-child{
+                &{
+                    display: block;
+                }
+                & > li.right {
+                    &{
+                        float: right;
+                    }
+                    .topMenuButton{
+                        display: block;
+                    }
+                }
+            }
+        }
+
+    }
+    .homeSliderContainer {
+        height: 180px;
+    }
+    .siteButton{
+        width: 180px;
+        height: 50px;
+        border: none;
+        outline: none;
+    }
+    .pageContainer {
+        &{
+            min-width: 100%;
+        }
+        .sliderItem > *{
+            &{
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                top: 0px;
+                left: 0px;
+            }
+            &.bestOfYear,&.surpriseText{
+                top: 0px;
+                left: 0px;
+            }
+        }
+    }
+    .musicItemCard{
+
+        width:  50%;
+
+        .title{
+            &{
+
+            }
+            .titleText{
+                padding: 5px 0px;
+            }
+        }
+        .musicSettingItems{
+            &{
+                left: 0px;
+            }
+            > li {
+                padding: 10px 10px;
+                font-size: 1rem;
+            }
+        }
+    }
+    .footer{
+        &{
+
+        }
+        .footerContent{
+            &{
+
+            }
+            &>ul:first-child{
+                width: 100%;
+            }
+            &>ul:last-child{
+                display: none;
+            }
+        }
+    }
+    .bottomPlayerContainer{
+        &{
+
+        }
+        .bottomPlayer{
+            &{
+
+            }
+            & >ul{
+                float: none;
+            }
+            & > *{
+                display: none;
+            }
+            & > ul:first-child{
+                &{
+                    display: block; 
+                }
+                & > li{
+                    min-width: 33.33%;
+                    text-align: center;
+                }
+            }
+        }
+    }
+    .fullMusic{
+        &{
+
+        }
+        .waveformContainer{
+            display: none;
+        }
+        .fullMusicDetailContainer{
+            &{
+
+            }
+            .leftInfo,.rightInfo,.imagethumbright{
+                display: none;
+            }
+            .imagethumb{
+                float: none;
+                margin: 0 auto;
+            }
+
+        }
+        .fullScreenMenu{
+            &{
+
+            }
+            >ul >li:not(.none){
+                display: block;
+                width: 100%;
+                float: none;
+            }
+            >ul >li:first-child,>ul >li:last-child{
+                display: none;
+            }
+            >ul li.waveformTypeContainerBox{
+                display: none;
+            }
+        }
+
+    }
+    .userHeader{
+        &{
+
+        }
+        .userCover{
+            height: 150px;
+        }
+        .profileImageContainer{
+            &{
+
+            }
+            .profileImage{
+                width: 80px;
+                height: 80px;
+                border-radius: 100px;
+            }
+
+        }
+        .profileName{
+            left:150px;
+        }
+        .userProfileMenu{
+            &{
+                padding: 0px 10px;
+            }
+            >li{
+                &{
+                    display: block;
+                    float: none;
+                    width: 100%;
+                }
+                a{
+                    &{
+                        width: 100%;
+                    }
+                    &.highlight{
+                        background-color: $highlight;
+                    }
+                }
+            }
+        }
+        .coverChangeContainer{
+            &{
+                right: 0px;
+                top: 0px;
+            }
+            .coverChangeButton{
+                padding: 5px 15px;
+                min-width: 150px;
+            }
+        }
+
+    }
+    .userPlaylistItemContainer{
+        &{
+
+        }
+        .content{
+            min-height: 80px;
+        }
+    }
+    .privacy, .cookie, .help{
+        margin: 0px 10px;
+    }
+    .page{
+        &{
+
+        }
+        .about{
+            margin: 0px 10px;
+        }
+    }
+    .loginContainer{
+        &{
+
+        }
+        .loginBox{
+            width:100%;
+        }
+    }
+    .addToPlaylistContainer{
+        &{
+
+        }
+        .close{
+            right: 5px;
+            top: 5px;
+        }
+        .playlistAddContainer{
+            &{
+                margin-top: 40px;
+                width: 320px;
+            }
+            .titleContainer{
+                &{
+
+                }
+                > li{
+                    padding: 10px 15px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 461px) and  (max-width: 620px) {
+
+    .headerContainer {
+        .header{
+            & > *{
+                display: none;
+            }
+            & :first-child{
+                &{
+                    display: block;
+                }
+                & > li.right {
+                    &{
+                        float: right;
+                    }
+                    .topMenuButton{
+                        display: block;
+                    }
+                }
+            }
+        }
+
+    }
+    .homeSliderContainer {
+        height: 180px;
+    }
+    .siteButton{
+        width: 180px;
+        height: 50px;
+        border: none;
+        outline: none;
+    }
+    .pageContainer {
+        &{
+            min-width: 100%;
+        }
+        .sliderItem > *{
+            &{
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                top: 0px;
+                left: 0px;
+            }
+            &.bestOfYear,&.surpriseText{
+                top: 0px;
+                left: 0px;
+            }
+        }
+    }
+    .musicItemCard{
+
+        width:  50%;
+
+        .title{
+            &{
+
+            }
+            .titleText{
+                padding: 5px 0px;
+            }
+        }
+        .musicSettingItems{
+            &{
+                left: 0px;
+            }
+            > li {
+                padding: 10px 10px;
+                font-size: 1rem;
+            }
+        }
+    }
+    .footer{
+        &{
+
+        }
+        .footerContent{
+            &{
+
+            }
+            &>ul:first-child{
+                width: 100%;
+            }
+            &>ul:last-child{
+                display: none;
+            }
+        }
+    }
+    .bottomPlayerContainer{
+        &{
+
+        }
+        .bottomPlayer{
+            &{
+
+            }
+            & >ul{
+                float: none;
+            }
+            & > *{
+                display: none;
+            }
+            & > ul:first-child{
+                &{
+                    display: block; 
+                }
+                & > li{
+                    min-width: 33.33%;
+                    text-align: center;
+                }
+            }
+
+
+        }
+
+    }
+    .fullMusic{
+        &{
+
+        }
+
+        .waveformContainer{
+            display: none;
+        }
+        .fullMusicDetailContainer{
+            &{
+
+            }
+            .leftInfo,.rightInfo,.imagethumbright{
+                display: none;
+            }
+            .imagethumb{
+                float: none;
+                margin: 0 auto;
+            }
+
+        }
+        .fullScreenMenu{
+            &{
+
+            }
+            >ul >li:not(.none){
+                display: block;
+                width: 100%;
+                float: none;
+            }
+            >ul >li:first-child,>ul >li:last-child{
+                display: none;
+            }
+            >ul li.waveformTypeContainerBox{
+                display: none;
+            }
+        }
+
+    }
+    .userHeader{
+        &{
+
+        }
+        .userCover{
+            height: 150px;
+        }
+        .profileImageContainer{
+            &{
+
+            }
+            .profileImage{
+                width: 80px;
+                height: 80px;
+                border-radius: 100px;
+            }
+
+        }
+        .profileName{
+            left:150px;
+        }
+        .userProfileMenu{
+            &{
+                padding: 0px 10px;
+            }
+            >li{
+                &{
+                    display: block;
+                    float: none;
+                    width: 100%;
+                }
+                a{
+                    &{
+                        width: 100%;
+                    }
+                    &.highlight{
+                        background-color: $highlight;
+                    }
+                }
+            }
+        }
+        .coverChangeContainer{
+            &{
+                right: 0px;
+                top: 0px;
+            }
+            .coverChangeButton{
+                padding: 5px 15px;
+                min-width: 150px;
+            }
+        }
+
+    }
+    .userPlaylistItemContainer{
+        &{
+
+        }
+        .content{
+            min-height: 80px;
+        }
+    }
+    .privacy, .cookie, .help{
+        margin: 0px 10px;
+    }
+    .page{
+        &{
+
+        }
+        .about{
+            margin: 0px 10px;
+        }
+    }
+    .loginContainer{
+        &{
+
+        }
+        .loginBox{
+            width:100%;
+        }
+    }
+    .addToPlaylistContainer{
+        &{
+
+        }
+        .close{
+            right: 5px;
+            top: 5px;
+        }
+        .playlistAddContainer{
+            &{
+                margin-top: 40px;
+                width: 320px;
+            }
+            .titleContainer{
+                &{
+
+                }
+                > li{
+                    padding: 10px 15px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 621px) and  (max-width: 659px) {
+
+    .headerContainer {
+        .header{
+            & > *{
+                display: none;
+            }
+            & :first-child{
+                &{
+                    display: block;
+                }
+                & > li.right {
+                    &{
+                        float: right;
+                    }
+                    .topMenuButton{
+                        display: block;
+                    }
+                }
+            }
+        }
+
+    }
+    .homeSliderContainer {
+        height: 230px;
+    }
+    .siteButton{
+        width: 180px;
+        height: 50px;
+        border: none;
+        outline: none;
+    }
+    .pageContainer {
+        &{
+            min-width: 100%;
+        }
+        .sliderItem > *{
+            &{
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                top: 0px;
+                left: 0px;
+            }
+            &.bestOfYear,&.surpriseText{
+                top: 0px;
+                left: 0px;
+            }
+        }
+    }
+    .musicItemCard{
+
+        width:  33.33%;
+
+        .title{
+            &{
+
+            }
+            .titleText{
+                padding: 5px 0px;
+            }
+        }
+        .musicSettingItems{
+            &{
+                left: 0px;
+            }
+            > li {
+                padding: 10px 10px;
+                font-size: 1rem;
+            }
+        }
+    }
+    .footer{
+        &{
+
+        }
+        .footerContent{
+            &{
+
+            }
+            &>ul:first-child{
+                width: 100%;
+            }
+            &>ul:last-child{
+                display: none;
+            }
+        }
+    }
+    .bottomPlayerContainer{
+        &{
+
+        }
+        .bottomPlayer{
+            &{
+                /*display: table;*/
+                text-align: center;
+            }
+            & > *{
+                /*display: block;*/
+                /*display: table-cell;*/
+            }
+            & > *.bottomMusicTimeContainer >li:nth-child(2){
+                display: none;
+            }
+            & > *:nth-child(5){
+                float: right;
+            }
+            .bottomPlayingMusic{
+                width: 150px;
+                text-align: left;
+                margin-right: 5px;
+            }
+
+        }
+    }
+    .fullMusic{
+        &{
+
+        }
+
+        .waveformContainer{
+            display: none;
+        }
+        .fullMusicDetailContainer{
+            &{
+
+            }
+            .leftInfo,.rightInfo,.imagethumbright{
+                display: none;
+            }
+            .imagethumb{
+                float: none;
+                margin: 0 auto;
+            }
+
+        }
+        .fullScreenMenu{
+            &{
+
+            }
+            >ul >li:not(.none){
+                display: block;
+                width: 100%;
+                float: none;
+            }
+            >ul >li:first-child,>ul >li:last-child{
+                display: none;
+            }
+            >ul li.waveformTypeContainerBox{
+                display: none;
+            }
+        }
+
+    }
+    .userHeader{
+        &{
+
+        }
+        .userCover{
+            height: 150px;
+        }
+        .profileImageContainer{
+            &{
+
+            }
+            .profileImage{
+                width: 80px;
+                height: 80px;
+                border-radius: 100px;
+            }
+
+        }
+        .profileName{
+            left:150px;
+        }
+        .userProfileMenu{
+            &{
+                padding: 0px 10px;
+            }
+            >li{
+                &{
+                    display: block;
+                    float: none;
+                    width: 100%;
+                }
+                a{
+                    &{
+                        width: 100%;
+                    }
+                    &.highlight{
+                        background-color: $highlight;
+                    }
+                }
+            }
+        }
+        .coverChangeContainer{
+            &{
+                right: 0px;
+                top: 0px;
+            }
+            .coverChangeButton{
+                padding: 5px 15px;
+                min-width: 150px;
+            }
+        }
+
+    }
+    .userPlaylistItemContainer{
+        &{
+
+        }
+        .content{
+            min-height: 80px;
+        }
+    }
+    .privacy, .cookie, .help{
+        margin: 0px 10px;
+    }
+    .page{
+        &{
+
+        }
+        .about{
+            margin: 0px 10px;
+        }
+    }
+    .loginContainer{
+        &{
+
+        }
+        .loginBox{
+            width:100%;
+        }
+    }
+    .addToPlaylistContainer{
+        &{
+
+        }
+        .close{
+            right: 5px;
+            top: 5px;
+        }
+        .playlistAddContainer{
+            &{
+                margin-top: 40px;
+                width: 320px;
+            }
+            .titleContainer{
+                &{
+
+                }
+                > li{
+                    padding: 10px 15px;
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (min-width: 660px) and  (max-width: 720px) {
+
+    .headerContainer {
+        .header{
+            & > *{
+                display: none;
+            }
+            & :first-child{
+                &{
+                    display: block;
+                }
+                & > li.right {
+                    &{
+                        float: right;
+                    }
+                    .topMenuButton{
+                        display: block;
+                    }
+                }
+            }
+        }
+
+    }
+    .homeSliderContainer {
+        height: 230px;
+    }
+    .siteButton{
+        width: 180px;
+        height: 50px;
+        border: none;
+        outline: none;
+    }
+    .pageContainer {
+        &{
+            min-width: 100%;
+        }
+        .sliderItem > *{
+            &{
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                top: 0px;
+                left: 0px;
+            }
+            &.bestOfYear,&.surpriseText{
+                top: 0px;
+                left: 0px;
+            }
+        }
+    }
+    .musicItemCard{
+
+        width:  33.33%;
+
+        .title{
+            &{
+
+            }
+            .titleText{
+                padding: 5px 0px;
+            }
+        }
+        .musicSettingItems{
+            &{
+                left: 0px;
+            }
+            > li {
+                padding: 10px 10px;
+                font-size: 1rem;
+            }
+        }
+    }
+    .footer{
+        &{
+
+        }
+        .footerContent{
+            &{
+
+            }
+            &>ul:first-child{
+                width: 100%;
+            }
+            &>ul:last-child{
+                display: none;
+            }
+        }
+    }
+    .bottomPlayerContainer{
+        &{
+
+        }
+        .bottomPlayer{
+            &{
+                /*display: table;*/
+            }
+            & > *{
+                /*display: block;*/
+                /*display: table-cell;*/
+            }
+            & > *.bottomMusicTimeContainer >li:nth-child(2){
+                display: none;
+            }
+            & > *:nth-child(5){
+                float: right;
+            }
+            .bottomPlayingMusic{
+                width: 180px;
+                margin-right: 10px;
+            }
+
+        }
+    }
+    .fullMusic{
+        &{
+
+        }
+
+        .waveformContainer{
+            display: none;
+        }
+        .fullMusicDetailContainer{
+            &{
+
+            }
+            .leftInfo,.rightInfo,.imagethumbright{
+                display: none;
+            }
+            .imagethumb{
+                float: none;
+                margin: 0 auto;
+            }
+
+        }
+        .fullScreenMenu{
+            &{
+
+            }
+            >ul >li:not(.none){
+                display: block;
+                width: 100%;
+                float: none;
+            }
+            >ul >li:first-child,>ul >li:last-child{
+                display: none;
+            }
+            >ul li.waveformTypeContainerBox{
+                display: none;
+            }
+        }
+
+    }
+    .userHeader{
+        &{
+
+        }
+        .userCover{
+            height: 150px;
+        }
+        .profileImageContainer{
+            &{
+
+            }
+            .profileImage{
+                width: 80px;
+                height: 80px;
+                border-radius: 100px;
+            }
+
+        }
+        .profileName{
+            left:150px;
+        }
+        .userProfileMenu{
+            &{
+                padding: 0px 10px;
+            }
+            >li{
+                &{
+                    display: block;
+                    float: none;
+                    width: 100%;
+                }
+                a{
+                    &{
+                        width: 100%;
+                    }
+                    &.highlight{
+                        background-color: $highlight;
+                    }
+                }
+            }
+        }
+        .coverChangeContainer{
+            &{
+                right: 0px;
+                top: 0px;
+            }
+            .coverChangeButton{
+                padding: 5px 15px;
+                min-width: 150px;
+            }
+        }
+
+    }
+    .userPlaylistItemContainer{
+        &{
+
+        }
+        .content{
+            min-height: 80px;
+        }
+    }
+    .privacy, .cookie, .help{
+        margin: 0px 10px;
+    }
+    .page{
+        &{
+
+        }
+        .about{
+            margin: 0px 10px;
+        }
+    }
+    .loginContainer{
+        &{
+
+        }
+        .loginBox{
+            width:100%;
+        }
+    }
+    .addToPlaylistContainer{
+        &{
+
+        }
+        .close{
+            right: 5px;
+            top: 5px;
+        }
+        .playlistAddContainer{
+            &{
+                margin-top: 40px;
+                width: 320px;
+            }
+            .titleContainer{
+                &{
+
+                }
+                > li{
+                    padding: 10px 15px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 721px) and  (max-width: 950px) {
+
+    .headerContainer {
+        .header{
+            & > *{
+                display: none;
+            }
+            & :first-child{
+                &{
+                    display: block;
+                }
+                & > li.right {
+                    &{
+                        float: right;
+                    }
+                    .topMenuButton{
+                        display: block;
+                    }
+                }
+            }
+        }
+
+    }
+    .homeSliderContainer {
+        height: 250px;
+    }
+    .siteButton{
+        width: 180px;
+        height: 50px;
+        border: none;
+        outline: none;
+    }
+    .pageContainer {
+        &{
+            min-width: 100%;
+        }
+        .sliderItem > *{
+            &{
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                top: 0px;
+                left: 0px;
+            }
+            &.bestOfYear,&.surpriseText{
+                top: 0px;
+                left: 0px;
+            }
+        }
+    }
+    .musicItemCard{
+
+        width:  33.33%;
+
+        .title{
+            &{
+
+            }
+            .titleText{
+                padding: 5px 0px;
+            }
+        }
+        .musicSettingItems{
+            &{
+                left: 0px;
+            }
+            > li {
+                padding: 10px 10px;
+                font-size: 1rem;
+            }
+        }
+    }
+    .footer{
+        &{
+
+        }
+        .footerContent{
+            &{
+
+            }
+            &>ul:first-child{
+                width: 100%;
+            }
+            &>ul:last-child{
+                display: none;
+            }
+        }
+    }
+    .bottomPlayerContainer{
+        &{
+
+        }
+        .bottomPlayer{
+            &{
+                /*display: table;*/
+            }
+            & > *{
+                /*display: block;*/
+                /*display: table-cell;*/
+            }
+            & > *.bottomMusicTimeContainer >li:nth-child(2){
+                display: none;
+            }
+            & > *:nth-child(5){
+                float: right;
+            }
+            .bottomPlayingMusic{
+                width: 240px;
+                margin-right: 10px;
+            }
+
+        }
+    }
+    .fullMusic{
+        &{
+
+        }
+
+        .waveformContainer{
+            display: none;
+        }
+        .fullMusicDetailContainer{
+            &{
+
+            }
+            .leftInfo,.rightInfo,.imagethumbright{
+                display: none;
+            }
+            .imagethumb{
+                float: none;
+                margin: 0 auto;
+            }
+
+        }
+        .fullScreenMenu{
+
+            &{
+
+            }
+            >ul{
+                text-align: center;
+                display: block;
+            }
+            >ul >li:not(.none){
+
+                display: inline-block;
+            }
+            >ul >li:last-child{
+                display: inherit;
+            }
+            >ul li.waveformTypeContainerBox{
+                display: none;
+            }
+
+        }
+
+    }
+    .userHeader{
+        &{
+
+        }
+        .userCover{
+            height: 150px;
+        }
+        .profileImageContainer{
+            &{
+
+            }
+            .profileImage{
+                width: 80px;
+                height: 80px;
+                border-radius: 100px;
+            }
+
+        }
+        .profileName{
+            left:150px;
+        }
+        .userProfileMenu{
+            &{
+                padding: 0px 10px;
+            }
+            >li{
+
+                &{
+                    display: block;
+                    float: none;
+                    width: 100%;
+                }
+                a{
+                    &{
+                        width: 100%;
+                    }
+                    &.highlight{
+                        background-color: $highlight;
+                    }
+                }
+            }
+        }
+        .coverChangeContainer{
+            &{
+                right: 0px;
+                top: 0px;
+            }
+            .coverChangeButton{
+                padding: 5px 15px;
+                min-width: 150px;
+            }
+        }
+
+    }
+    .userPlaylistItemContainer{
+        &{
+
+        }
+        .content{
+            min-height: 80px;
+        }
+    }
+    .privacy, .cookie, .help{
+        margin: 0px 10px;
+    }
+    .page{
+        &{
+
+        }
+        .about{
+            margin: 0px 10px;
+        }
+    }
+    .loginContainer{
+        &{
+
+        }
+        .loginBox{
+            width:100%;
+        }
+    }
+    .addToPlaylistContainer{
+        &{
+
+        }
+        .close{
+            right: 5px;
+            top: 5px;
+        }
+        .playlistAddContainer{
+            &{
+                margin-top: 40px;
+                width: 320px;
+            }
+            .titleContainer{
+                &{
+
+                }
+                > li{
+                    padding: 10px 15px;
+                }
+            }
+        }
+    }
+}
+
+
+/* Desktops and laptops ----------- */
+@media only screen  and (min-width : 1224px) {
+    /* Styles */
+}
+
+/* Large screens ----------- */
+@media only screen  and (min-width : 1824px) {
+
+}
