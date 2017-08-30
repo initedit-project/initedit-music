@@ -43,6 +43,7 @@ $URL = SITE_URL . $_SERVER['REQUEST_URI'];
         <meta name="language" content="english">
         <script src="/public/js/jquery-2.2.0.min.js" type="text/javascript"></script>
         <script src="/public/js/app.js?v=<?php echo time(); ?>" type="text/javascript"></script>
+        <script src="/public/js/analytics.google.com.js" type="text/javascript"></script>
 
         <link rel="icon" href="/favicon.ico">
         <!-- Chrome, Firefox OS, Opera and Vivaldi -->
