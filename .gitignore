@@ -2,3 +2,5 @@
 /sitemap.xml
 /manifest.json
 /app/website/tools1/
+/app/lib/tools/Database.php
+.gitignore
